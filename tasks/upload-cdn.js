@@ -23,6 +23,8 @@ console.log('Using public dir:', publicDir);
 const cosTargetBase = process.env.COS_TARGET_BASE || ''; // should end with /
 const localFolder = `./${publicDir}/`;
 const remotePrefix = `${cosTargetBase}${publicDir}/`;
+console.log('Using local folder:', localFolder);
+console.log('Using remote prefix:', remotePrefix);
 
 const fastListFolder = function(options, callback) {
   const pathJoin = function(dir, name, isDir) {
