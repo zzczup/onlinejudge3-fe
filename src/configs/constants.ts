@@ -1,6 +1,6 @@
 const constants = {
-  siteName: 'SDUT OJ',
-  siteTitle: 'SDUT Online Judge',
+  siteName: 'zzczup OJ',
+  siteTitle: '拙壮程长在线评测系统',
   githubUrl: 'https://github.com/sdutacm/onlinejudge3',
   contactEmail: 'sdutacm@163.com',
   serviceStatusUrl: 'https://service-status.sdutacm.cn',

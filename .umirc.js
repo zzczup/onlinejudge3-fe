@@ -60,7 +60,7 @@ export default {
           exclude: [/models\//, /services\//],
         },
         title: {
-          defaultTitle: 'SDUT OnlineJudge',
+          defaultTitle: 'zzczup OnlineJudge',
           separator: '|',
           format: '{current} {separator} {parent}',
         },

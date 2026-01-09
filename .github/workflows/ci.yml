@@ -14,10 +14,10 @@ jobs:
       COS_DOMAIN: ${{ secrets.COS_DOMAIN }}
       COS_BUCKET: ${{ secrets.COS_BUCKET }}
       COS_REGION: ${{ secrets.COS_REGION }}
-      COS_TARGET_BASE: ${{ secrets.COS_TARGET_BASE }}
-      CDN_URL: ${{ secrets.CDN_URL }}
-      MEDIA_URL: ${{ secrets.MEDIA_URL }}
-      DATA_USING_GIT: ${{ secrets.DATA_USING_GIT }}
+      COS_TARGET_BASE: ${{ vars.COS_TARGET_BASE }}
+      CDN_URL: ${{ vars.CDN_URL }}
+      MEDIA_URL: ${{ vars.MEDIA_URL }}
+      DATA_USING_GIT: ${{ vars.DATA_USING_GIT }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -59,9 +59,9 @@ jobs:
       COS_DOMAIN: ${{ secrets.COS_DOMAIN }}
       COS_BUCKET: ${{ secrets.COS_BUCKET }}
       COS_REGION: ${{ secrets.COS_REGION }}
-      COS_TARGET_BASE: ${{ secrets.COS_TARGET_BASE }}
-      CDN_URL: ${{ secrets.CDN_URL }}
-      MEDIA_URL: ${{ secrets.MEDIA_URL }}
+      COS_TARGET_BASE: ${{ vars.COS_TARGET_BASE }}
+      CDN_URL: ${{ vars.CDN_URL }}
+      MEDIA_URL: ${{ vars.MEDIA_URL }}
       DATA_USING_GIT: 0
     runs-on: ubuntu-latest
     steps:
