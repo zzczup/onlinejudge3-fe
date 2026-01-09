@@ -11,14 +11,14 @@ const publicPathPrefix = process.env.CDN_URL || '';
 
 const buildConfig = {
   release: {
-    base: '/onlinejudge3/',
-    publicPath: `${publicPathPrefix}/onlinejudge3/`,
-    outputPath: './onlinejudge3',
+    base: '/onlinejudge3_zzczup/',
+    publicPath: `${publicPathPrefix}/onlinejudge3_zzczup/`,
+    outputPath: './onlinejudge3_zzczup',
   },
   release_competition_side: {
-    base: '/onlinejudge3_cs/',
-    publicPath: `${publicPathPrefix}/onlinejudge3_cs/`,
-    outputPath: './onlinejudge3_cs',
+    base: '/onlinejudge3_zzczup_cs/',
+    publicPath: `${publicPathPrefix}/onlinejudge3_zzczup_cs/`,
+    outputPath: './onlinejudge3_zzczup_cs',
   },
   // exp: {
   //   base: '/onlinejudge3_exp/',
