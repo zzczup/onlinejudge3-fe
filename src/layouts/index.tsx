@@ -365,14 +365,14 @@ class Index extends React.Component<Props, State> {
           <Row gutter={20}>
             <Col xs={24} md={8} className="mb-md-lg">
               <h3>
-                SDUT OJ v{pkg.version}
+                {constants.siteName} v{pkg.version}
                 {isCompetitionSide() ? ' Competition Side' : ''}
               </h3>
               {!isCompetitionSide() && (
                 <p>
                   <ExtLink
                     className="normal-text-link"
-                    href="https://github.com/sdutacm/onlinejudge3"
+                    href={constants.githubUrl}
                   >
                     GitHub
                   </ExtLink>
@@ -380,7 +380,7 @@ class Index extends React.Component<Props, State> {
               )}
               {!isCompetitionSide() && (
                 <p>
-                  <a className="normal-text-link" href="mailto:sdutacm@163.com">
+                  <a className="normal-text-link" href={`mailto:${constants.contactEmail}`}>
                     Contact us
                   </a>
                 </p>
@@ -391,7 +391,7 @@ class Index extends React.Component<Props, State> {
                 </Link>
               </p>
               <p>
-                <ExtLink href="https://service-status.sdutacm.cn" className="normal-text-link">
+                <ExtLink href={constants.serviceStatusUrl} className="normal-text-link">
                   Service Status
                 </ExtLink>
               </p>

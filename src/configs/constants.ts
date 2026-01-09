@@ -1,6 +1,9 @@
 const constants = {
   siteName: 'SDUT OJ',
   siteTitle: 'SDUT Online Judge',
+  githubUrl: 'https://github.com/sdutacm/onlinejudge3',
+  contactEmail: 'sdutacm@163.com',
+  serviceStatusUrl: 'https://service-status.sdutacm.cn',
   accessTokenCookieName: 'access_token_openoj',
   imageDirPrefix: `${process.env.MEDIA_URL}/image/`,
   avatarUrlPrefix: `${process.env.MEDIA_URL}/image/avatars/`,
