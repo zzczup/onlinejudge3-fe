@@ -100,6 +100,18 @@ class SettingsModal extends React.Component<Props, State> {
     });
   };
 
+  handleKanbanMusumeChange = (e) => {
+    this.props.dispatch({
+      type: 'settings/setKanbanMusume',
+      payload: { kanbanMusume: e.target.value },
+    });
+    tracker.event({
+      category: 'settings',
+      action: 'changeKanbanMusume',
+      label: e.target.value,
+    });
+  };
+
   render() {
     const { children, settings, location } = this.props;
     // const matchForceDarkPage = matchPath(location.pathname, {
@@ -195,6 +207,24 @@ class SettingsModal extends React.Component<Props, State> {
               defaultChecked={settings.useAbsoluteTime}
               onChange={this.handleUseAbsoluteTime}
             />
+          </div>
+          <div className="settings-item">
+            <span>
+              Use Kanban Musume (Beta)
+              <Explanation className="ml-sm-md">
+                将在 OJ 角落显示拙壮程长官方看板娘 IP 形象。
+              </Explanation>
+            </span>
+            <Radio.Group
+              onChange={this.handleKanbanMusumeChange}
+              defaultValue={settings.kanbanMusume}
+              size="small"
+              className="float-right"
+            >
+              <Radio.Button value="none">None</Radio.Button>
+              <Radio.Button value="xiaozhuo">菜姬琢</Radio.Button>
+              <Radio.Button value="xiaocheng">蓝原橙</Radio.Button>
+            </Radio.Group>
           </div>
         </Modal>
       </>

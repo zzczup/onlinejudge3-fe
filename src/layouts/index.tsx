@@ -37,6 +37,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { initGeneralGlobalEvents } from '@/lib/socketHandlers/general/globalEvents';
 import { reduxEmitter, ReduxEvents, IReduxEvenData } from '@/events/redux';
 import ZzczLoginMain from '../assets/images/zzcz_logo_main.svg';
+import { loadOml2d } from 'oh-my-live2d';
 
 const VIEWPORT_CHANGE_THROTTLE = 250;
 
@@ -55,6 +56,8 @@ interface State {
 }
 
 class Index extends React.Component<Props, State> {
+  private oml2d: ReturnType<typeof loadOml2d> | null = null;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -118,6 +121,130 @@ class Index extends React.Component<Props, State> {
       type,
       payload,
     });
+  };
+
+  handleReduxStateChanged = ({ model, key, value }: IReduxEvenData[ReduxEvents.StateChanged]) => {
+    if (model === 'settings' && key === 'kanbanMusume') {
+      this.handleKanbanMusumeChange(value);
+    }
+  };
+
+  // ph-my-live2d 的 loadModelByName 有 bug，只能退到 index
+  findL2dModelIndexByName = (name: string) => {
+    switch (name) {
+      case 'xiaozhuo':
+        return 0;
+      case 'xiaocheng':
+        return 1;
+      default:
+        return -1;
+    }
+  };
+
+  handleKanbanMusumeChange = (kanbanMusume: string) => {
+    if (this.oml2d) {
+      if (kanbanMusume !== 'none') {
+        this.oml2d.loadModelByIndex(this.findL2dModelIndexByName(kanbanMusume));
+      } else {
+        this.oml2d.stageSlideOut();
+      }
+    } else {
+      kanbanMusume !== 'none' && this.loadOml2d(kanbanMusume);
+    }
+  };
+
+  loadOml2d = (initModelName?: string) => {
+    this.oml2d = loadOml2d({
+      dockedPosition: 'right',
+      mobileDisplay: true,
+      primaryColor: '#acacac',
+      // primaryColor: '#82b44e', // 小琢
+      // primaryColor: '#2f74bb', // 小橙
+      models: [
+        {
+          name: 'xiaozhuo',
+          path:
+            'https://cdn.shaly.sdutacm.cn/zzcz/live2d/zzcz_%E8%8F%9C%E5%A7%AC%E7%90%A2_DLC10_Live2D/zzcz_%E8%8F%9C%E5%A7%AC%E7%90%A2_DLC10_Live2D.model3.json',
+          // @ts-ignore
+          scale: 0.2,
+          mobileScale: 0.2,
+        },
+        {
+          name: 'xiaocheng',
+          path:
+            'https://cdn.shaly.sdutacm.cn/zzcz/live2d/zzcz_%E8%93%9D%E5%8E%9F%E6%A9%99_DLC10_Live2D/zzcz_%E8%93%9D%E5%8E%9F%E6%A9%99_DLC10_Live2D.model3.json',
+          // @ts-ignore
+          scale: 0.2,
+          mobileScale: 0.2,
+        },
+      ],
+      menus: {
+        items: [
+          {
+            id: 'Rest',
+            icon: 'icon-rest',
+            title: '休息',
+            onClick(oml2d): void {
+              oml2d.statusBarOpen(oml2d.options.statusBar?.restMessage); // 展示状态条
+              oml2d.clearTips();
+
+              oml2d.setStatusBarClickEvent(() => {
+                oml2d.statusBarClose();
+                oml2d.stageSlideIn();
+                oml2d.statusBarClearEvents();
+              });
+
+              oml2d.stageSlideOut();
+            },
+          },
+          // {
+          //   id: 'SwitchModel',
+          //   icon: 'icon-switch',
+          //   title: '切换模型',
+          //   onClick(oml2d): void {
+          //     oml2d.loadNextModel();
+          //   },
+          // },
+        ],
+        style: {
+          left: '-16px',
+        },
+      },
+      statusBar: {
+        loadingMessage: '召唤中',
+        loadFailMessage: '召唤失败',
+        loadSuccessMessage: '召唤成功',
+        switchingMessage: '正在换人',
+        reloadMessage: '重新召唤',
+      },
+      tips: {
+        style: {
+          display: 'none',
+        },
+        mobileStyle: {
+          display: 'none',
+        },
+        welcomeTips: {
+          message: {
+            daybreak: '',
+            morning: '',
+            noon: '',
+            afternoon: '',
+            dusk: '',
+            night: '',
+            lateNight: '',
+            weeHours: '',
+          },
+        },
+        copyTips: {
+          message: [],
+        },
+      },
+    });
+
+    if (initModelName) {
+      this.oml2d.loadModelByIndex(this.findL2dModelIndexByName(initModelName));
+    }
   };
 
   async componentDidMount() {
@@ -213,6 +340,9 @@ class Index extends React.Component<Props, State> {
 
     initGeneralGlobalEvents();
     reduxEmitter.on(ReduxEvents.Dispatch, this.handleReduxDispatch);
+    reduxEmitter.on(ReduxEvents.StateChanged, this.handleReduxStateChanged);
+
+    settings.kanbanMusume !== 'none' && this.loadOml2d(settings.kanbanMusume);
   }
 
   componentWillUnmount() {
@@ -223,6 +353,7 @@ class Index extends React.Component<Props, State> {
     window.removeEventListener('scroll', this.checkUserActive);
     window.removeEventListener('keydown', this.checkUserActive);
     reduxEmitter.off(ReduxEvents.Dispatch, this.handleReduxDispatch);
+    reduxEmitter.off(ReduxEvents.StateChanged, this.handleReduxStateChanged);
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
@@ -390,7 +521,12 @@ class Index extends React.Component<Props, State> {
               )} */}
               {!isCompetitionSide() && (
                 <p>
-                  <a className="normal-text-link" onClick={() => { alert('咨询微信号：zzczup\n亦欢迎关注公众号：拙壮程长'); }}>
+                  <a
+                    className="normal-text-link"
+                    onClick={() => {
+                      alert('咨询微信号：zzczup\n亦欢迎关注公众号：拙壮程长');
+                    }}
+                  >
                     Contact us
                   </a>
                 </p>

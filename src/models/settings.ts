@@ -1,5 +1,6 @@
 import localStorage from '@/utils/localStorage';
 import { merge, omit } from 'lodash-es';
+import { reduxEmitter, ReduxEvents } from '@/events/redux';
 
 const initialState = {
   theme: 'auto',
@@ -8,6 +9,7 @@ const initialState = {
   improveAnimation: true,
   proMode: false,
   useAbsoluteTime: false,
+  kanbanMusume: 'none',
 } as ISettings;
 
 function genState() {
@@ -53,6 +55,15 @@ export default {
     setUseAbsoluteTime(state, { payload: { useAbsoluteTime } }) {
       localStorage.set('settings', omit({ ...state, useAbsoluteTime }, ['themeLocked']));
       state.useAbsoluteTime = useAbsoluteTime;
+    },
+    setKanbanMusume(state, { payload: { kanbanMusume } }) {
+      localStorage.set('settings', omit({ ...state, kanbanMusume }, ['themeLocked']));
+      state.kanbanMusume = kanbanMusume;
+      reduxEmitter.emit(ReduxEvents.StateChanged, {
+        model: 'settings',
+        key: 'kanbanMusume',
+        value: kanbanMusume,
+      });
     },
   },
   effects: {},

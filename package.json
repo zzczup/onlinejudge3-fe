@@ -51,6 +51,7 @@
     "md5": "^2.2.1",
     "memoize-one": "^5.1.1",
     "mitt": "^3.0.1",
+    "oh-my-live2d": "^0.19.3",
     "promise-queue": "^2.2.5",
     "react": "^16.8.6",
     "react-autolatex": "^2.0.1",

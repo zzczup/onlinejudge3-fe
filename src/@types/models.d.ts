@@ -660,6 +660,8 @@ type ISettingsTheme = 'auto' | 'light' | 'dark';
 
 type ISettingsColor = 'default' | 'colorful' | 'colorblind-dp';
 
+type ISettingsKanbanMusume = 'none' | 'xiaozhuo' | 'xiaocheng';
+
 interface ISettings {
   theme: ISettingsTheme;
   themeLocked?: boolean;
@@ -667,6 +669,7 @@ interface ISettings {
   improveAnimation: boolean;
   proMode: boolean;
   useAbsoluteTime: boolean;
+  kanbanMusume: ISettingsKanbanMusume;
 }
 
 type INoticeId = string;
