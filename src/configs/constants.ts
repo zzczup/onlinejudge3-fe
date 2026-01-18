@@ -1,5 +1,5 @@
 const constants = {
-  siteName: 'zzczup OJ',
+  siteName: '拙壮程长 OJ',
   siteTitle: '拙壮程长在线评测系统',
   githubUrl: 'https://github.com/sdutacm/onlinejudge3',
   contactEmail: 'sdutacm@163.com',

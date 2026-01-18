@@ -80,8 +80,8 @@ class Index extends React.Component<Props, State> {
           <Row gutter={16} className="content-view-lg mb-xl">
             <Col xs={24} className="mt-lg">
               <h1 className="full-width-inner-content mb-sm">{constants.siteTitle}</h1>
-              <p className="full-width-inner-content text-para" style={{ fontSize: '20px' }}>
-                Practice coding, compete with players, and become a master.
+              <p className="full-width-inner-content text-para" style={{ fontSize: '20px', fontFamily: '"宋体", "Songti SC", "STSong", serif' }}>
+                编程是巧的技术，也是美的艺术。
               </p>
             </Col>
             {/* Banner for SDUTPC */}

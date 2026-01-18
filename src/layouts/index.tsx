@@ -36,6 +36,7 @@ import AchievementToastContainer from '@/components/AchievementToastContainer';
 import 'react-toastify/dist/ReactToastify.css';
 import { initGeneralGlobalEvents } from '@/lib/socketHandlers/general/globalEvents';
 import { reduxEmitter, ReduxEvents, IReduxEvenData } from '@/events/redux';
+import ZzczLoginMain from '../assets/images/zzcz_logo_main.svg';
 
 const VIEWPORT_CHANGE_THROTTLE = 250;
 
@@ -332,7 +333,19 @@ class Index extends React.Component<Props, State> {
                 <Link
                   to={isCompetitionSide() ? pages.competitions.index : pages.index}
                   className={styles.logo}
+                  style={{ display: 'flex', alignItems: 'center' }}
                 >
+                  <ZzczLoginMain
+                    className="svg-fill"
+                    width={36}
+                    height={36}
+                    style={{
+                      marginRight: '8px',
+                      backgroundColor: 'white',
+                      borderRadius: '50%',
+                      border: '0.5px solid #fff',
+                    }}
+                  />
                   {constants.siteName}
                 </Link>
               ) : (
@@ -368,19 +381,16 @@ class Index extends React.Component<Props, State> {
                 {constants.siteName} v{pkg.version}
                 {isCompetitionSide() ? ' Competition Side' : ''}
               </h3>
-              {!isCompetitionSide() && (
+              {/* {!isCompetitionSide() && (
                 <p>
-                  <ExtLink
-                    className="normal-text-link"
-                    href={constants.githubUrl}
-                  >
+                  <ExtLink className="normal-text-link" href={constants.githubUrl}>
                     GitHub
                   </ExtLink>
                 </p>
-              )}
+              )} */}
               {!isCompetitionSide() && (
                 <p>
-                  <a className="normal-text-link" href={`mailto:${constants.contactEmail}`}>
+                  <a className="normal-text-link" onClick={() => { alert('咨询微信号：zzczup\n亦欢迎关注公众号：拙壮程长'); }}>
                     Contact us
                   </a>
                 </p>
@@ -401,11 +411,14 @@ class Index extends React.Component<Props, State> {
             {!isCompetitionSide() && (
               <Col xs={24} md={8} className="mb-md-lg">
                 <h3>Our Apps</h3>
-                <p>
-                  <ExtLink className="normal-text-link" href="https://oj.sdutacm.cn/oj-competition-side-client/?from=sdutoj">
+                {/* <p>
+                  <ExtLink
+                    className="normal-text-link"
+                    href="https://oj.sdutacm.cn/oj-competition-side-client/?from=sdutoj"
+                  >
                     Competition Side Client
                   </ExtLink>
-                </p>
+                </p> */}
                 <p>
                   <ExtLink className="normal-text-link" href="https://stepbystep.sdutacm.cn/">
                     StepByStep
@@ -452,7 +465,7 @@ class Index extends React.Component<Props, State> {
             )}
           </Row>
           <p className="mt-lg" style={{ fontWeight: 600 }}>
-            © 2008-{moment().format('YYYY')} SDUTACM. All Rights Reserved.
+            © 2024-{moment().format('YYYY')} 拙壮程长. All Rights Reserved.
           </p>
           {/* <div> */}
           {/* <a>API</a> */}
