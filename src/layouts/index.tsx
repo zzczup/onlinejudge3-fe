@@ -168,6 +168,9 @@ class Index extends React.Component<Props, State> {
           // @ts-ignore
           scale: 0.2,
           mobileScale: 0.2,
+          stageStyle: {
+            right: '20px',
+          },
         },
         {
           name: 'xiaocheng',
@@ -176,6 +179,9 @@ class Index extends React.Component<Props, State> {
           // @ts-ignore
           scale: 0.2,
           mobileScale: 0.2,
+          stageStyle: {
+            right: '20px',
+          },
         },
       ],
       menus: {
