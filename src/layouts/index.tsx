@@ -215,6 +215,9 @@ class Index extends React.Component<Props, State> {
         style: {
           left: '-16px',
         },
+        mobileStyle: {
+          left: '-16px',
+        },
       },
       statusBar: {
         loadingMessage: '召唤中',
