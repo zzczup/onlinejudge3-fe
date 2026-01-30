@@ -222,7 +222,7 @@ class SettingsModal extends React.Component<Props, State> {
               className="float-right"
             >
               <Radio.Button value="none">None</Radio.Button>
-              <Radio.Button value="xiaozhuo">菜姬琢</Radio.Button>
+              <Radio.Button value="xiaozhuo">蔡机琢</Radio.Button>
               <Radio.Button value="xiaocheng">蓝原橙</Radio.Button>
             </Radio.Group>
           </div>

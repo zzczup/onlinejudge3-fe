@@ -164,7 +164,7 @@ class Index extends React.Component<Props, State> {
         {
           name: 'xiaozhuo',
           path:
-            'https://cdn.shaly.sdutacm.cn/zzcz/live2d/zzcz_%E8%8F%9C%E5%A7%AC%E7%90%A2_DLC10_Live2D/zzcz_%E8%8F%9C%E5%A7%AC%E7%90%A2_DLC10_Live2D.model3.json',
+            'https://cdn.shaly.sdutacm.cn/zzcz/live2d/zzcz_%E8%94%A1%E6%9C%BA%E7%90%A2_DLC10_Live2D/zzcz_%E8%94%A1%E6%9C%BA%E7%90%A2_DLC10_Live2D.model3.json',
           // @ts-ignore
           scale: 0.2,
           mobileScale: 0.2,
