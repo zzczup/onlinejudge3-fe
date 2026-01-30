@@ -80,9 +80,41 @@ class Index extends React.Component<Props, State> {
           <Row gutter={16} className="content-view-lg mb-xl">
             <Col xs={24} className="mt-lg">
               <h1 className="full-width-inner-content mb-sm">{constants.siteTitle}</h1>
-              <p className="full-width-inner-content text-para" style={{ fontSize: '20px', fontFamily: '"宋体", "Songti SC", "STSong", serif' }}>
+              <p
+                className="full-width-inner-content text-para"
+                style={{ fontSize: '20px', fontFamily: '"宋体", "Songti SC", "STSong", serif' }}
+              >
                 编程是巧的技术，也是美的艺术。
               </p>
+            </Col>
+            {/* Banner for zzczpc */}
+            <Col xs={24} className="mt-lg">
+              <Alert
+                message={
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div>
+                      <i>
+                        <SdutpcLogoSvg
+                          className="svg-fill"
+                          width={80}
+                          height={80}
+                          viewBox="0 0 256 256"
+                        />
+                      </i>
+                    </div>
+                    <div className="ml-xl">
+                      <h3 className="mb-sm">[2026/2/1] 拙壮程长第一届程序设计竞赛 激情开启</h3>
+                      <div>
+                        <Link to={urlf(pages.competitions.home, { param: { id: 58 } })}>
+                          进入比赛
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                }
+                type="info"
+                showIcon={false}
+              />
             </Col>
             {/* Banner for SDUTPC */}
             {false && (
@@ -234,7 +266,7 @@ class Index extends React.Component<Props, State> {
               />
             </Col> */}
 
-            <Col xs={24} className="mt-lg">
+            {/* <Col xs={24} className="mt-lg">
               <Alert
                 message="限时推广"
                 description={
@@ -248,7 +280,7 @@ class Index extends React.Component<Props, State> {
                 type="info"
                 showIcon
               />
-            </Col>
+            </Col> */}
 
             {/* <Col xs={24} className="mt-lg">
               <Alert
